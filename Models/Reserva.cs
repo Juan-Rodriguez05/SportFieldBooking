@@ -18,7 +18,7 @@ namespace SportFieldBooking.Models
 
         public DateTime FechaHoraFin { get; set; }
 
-        public string Estado { get; set; }  // Reservado, Cancelado, Completado
+        public string Estado { get; set; } = string.Empty; // Reservado, Cancelado, Completado
 
         // Relación uno a uno con Pago
         public Pago? Pago { get; set; }

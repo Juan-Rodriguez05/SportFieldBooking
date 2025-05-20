@@ -6,9 +6,9 @@
 
         // FK a Campo
         public int IdCampo { get; set; }
-        public Campo? Campo { get; set; }
+        public Campo Campo { get; set; } = null!;
 
-        public string NombreEvento { get; set; }
+        public string NombreEvento { get; set; } = string.Empty;
 
         public DateTime FechaEvento { get; set; }
 
@@ -16,6 +16,6 @@
 
         public TimeSpan HoraFin { get; set; }
 
-        public string Descripcion { get; set; }
+        public string Descripcion { get; set; } = string.Empty;
     }
 }

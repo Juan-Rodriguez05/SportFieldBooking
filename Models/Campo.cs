@@ -4,11 +4,11 @@
     {
         public int IdCampo { get; set; }
 
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
-        public string Tipo { get; set; }  // Fútbol, Básquetbol, Tenis, etc.
+        public string Tipo { get; set; } = string.Empty; // Fútbol, Básquetbol, Tenis, etc.
 
-        public string Ubicacion { get; set; }
+        public string Ubicacion { get; set; } = string.Empty;
 
         public decimal TarifaHora { get; set; }
 
