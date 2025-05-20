@@ -20,7 +20,6 @@ namespace SportFieldBooking.Data
 
             modelBuilder.Entity<Campo>()
                 .HasKey(c => c.IdCampo);
-
             modelBuilder.Entity<Cliente>()
                 .HasKey(c => c.IdCliente);
             modelBuilder.Entity<Evento>()
