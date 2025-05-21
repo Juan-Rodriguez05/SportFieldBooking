@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using SportFieldBooking.Data;
+using SportFieldBooking.Models;
 
 namespace SportFieldBooking.Pages.Clientes
 {
