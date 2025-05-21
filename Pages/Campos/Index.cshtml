@@ -27,10 +27,18 @@
                 @foreach (var item in Model.Campos)
                 {
                     <tr>
-                        <td>@item.Nombre</td>
-                        <td>@item.Tipo</td>
-                        <td>@item.Ubicacion</td>
-                        <td>@item.TarifaHora.ToString("C")</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ubicacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TarifaHora)
+                        </td>
                         <td class="text-center">
                             <a asp-page="./Edit" asp-route-id="@item.IdCampo" class="btn btn-sm btn-outline-warning me-1">
                                 <i class="fas fa-edit"></i>
