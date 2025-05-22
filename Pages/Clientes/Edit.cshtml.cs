@@ -25,7 +25,7 @@ namespace SportFieldBooking.Pages.Clientes
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.Id == id);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -50,7 +50,7 @@ namespace SportFieldBooking.Pages.Clientes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClienteExists(Cliente.Id))
+                if (!ClienteExists(Cliente.IdCliente))
                 {
                     return NotFound();
                 }
@@ -65,7 +65,7 @@ namespace SportFieldBooking.Pages.Clientes
 
         private bool ClienteExists(int id)
         {
-            return (_context.Clientes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Clientes?.Any(e => e.IdCliente == id)).GetValueOrDefault();
         }
     }
 }
