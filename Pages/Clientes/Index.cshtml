@@ -32,10 +32,10 @@
                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
                         <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
                         <td class="text-center">
-                            <a asp-page="./Edit" asp-route-id="@item.IdCliente" class="btn btn-sm btn-outline-warning me-1">
+                            <a asp-page="./Edit" asp-route-id="@item.IdCliente" class="btn btn-sm btn-outline-warning me-1">Edit
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a asp-page="./Delete" asp-route-id="@item.IdCliente" class="btn btn-sm btn-outline-danger">
+                            <a asp-page="./Delete" asp-route-id="@item.IdCliente" class="btn btn-sm btn-outline-danger">Delete
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
