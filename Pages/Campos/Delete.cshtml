@@ -1,0 +1,64 @@
+﻿@page
+@model SportFieldBooking.Pages.Campos.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Campo";
+}
+
+<div class="container mt-5">
+    <h2 class="fw-bold text-gradient mb-4">🗑️ Eliminar Campo</h2>
+
+    <div class="alert alert-warning shadow-sm rounded">
+        <strong>¿Estás seguro de que deseas eliminar este campo?</strong><br />
+        Esta acción no se puede deshacer.
+    </div>
+
+    <div class="border p-4 rounded bg-white shadow-sm">
+        <dl class="row">
+            <dt class="col-sm-3 fw-semibold">Nombre</dt>
+            <dd class="col-sm-9">@Model.Campo.Nombre</dd>
+
+            <dt class="col-sm-3 fw-semibold">Tipo</dt>
+            <dd class="col-sm-9">@Model.Campo.Tipo</dd>
+
+            <dt class="col-sm-3 fw-semibold">Ubicación</dt>
+            <dd class="col-sm-9">@Model.Campo.Ubicacion</dd>
+
+            <dt class="col-sm-3 fw-semibold">Tarifa por Hora</dt>
+            <dd class="col-sm-9">@Model.Campo.TarifaHora.ToString("C")</dd>
+        </dl>
+
+        <form method="post" class="mt-4 d-flex justify-content-between">
+            <input type="hidden" asp-for="Campo.IdCampo" />
+            <a asp-page="./Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger btn-gradient">
+                <i class="fas fa-trash-alt me-2"></i> Eliminar Campo
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient {
+        background: linear-gradient(to right, #f7971e, #ffd200);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
