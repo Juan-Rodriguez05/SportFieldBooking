@@ -1,0 +1,45 @@
+﻿@page
+@model SportFieldBooking.Pages.Clientes.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+</div class="cold-md-4">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Cliente.Nombre" class="control-label"></label>
+            <input asp-for="Cliente.Nombre" class="form-control" />
+            <span asp-validation-for="Cliente.Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cliente.Apellido" class="control-label"></label>
+            <input asp-for="Cliente.Apellido" class="form-control" />
+            <span asp-validation-for="Cliente.Apellido" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cliente.Email" class="control-label"></label>
+            <input asp-for="Cliente.Email" class="form-control" />
+            <span asp-validation-for="Cliente.Email" class="text-danger"></span>
+        </div>
+         <div class="form-group">
+            <label asp-for="Cliente.Telefono" class="control-label"></label>
+            <input asp-for="Cliente.Telefono" class="form-control" />
+            <span asp-validation-for="Cliente.Telefono" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-page="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </form>
+   
+     @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
