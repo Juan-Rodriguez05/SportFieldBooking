@@ -9,8 +9,8 @@ namespace SportFieldBooking.Pages.Eventos
 {
     public class IndexModel : PageModel
     {
-       private readonly ApplicationDbContext _context;
-        public IndexModel(ApplicationDbContext context)
+       private readonly SportContext _context;
+        public IndexModel(SportContext context)
         {
             _context = context;
         }
