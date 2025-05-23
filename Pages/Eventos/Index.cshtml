@@ -4,47 +4,69 @@
     ViewData["Title"] = "Eventos";
 }
 
-<h1>Eventos</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between aling-items-center mb-4">
+        <h2 class="fw-bold text-gratdient-red"> Lista de Eventos</h2>
+        <a asp-asp-page="Create" class="btn-gradient-red">
+            <i class="fas fa-plus me-2"></i> Crear Evento
+        </a>
+    </div>
 
-<p>
-    <a asp-page="Create" class="btn btn-primary">Crear nuevo Evento</a>
-</p>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre del Evento</th>
-            <th>Fecha</th>
-            <th>Hora de Inicio</th>
-            <th>Hora de Fin</th>
-            <th>Campo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-    @if (Model.Eventos ! = null && Model.Eventos.Any())
-    {
-            foreach (var evento in Model.Eventos)
-            {
-                <tr>
-                    <td>@evento.Nombre</td>
-                    <td>@evento.Fecha.ToString("dd/MM/yyyy")</td>
-                    <td>@evento.HoraInicio.ToString("HH:mm")</td>
-                    <td>@evento.HoraFin.ToString("HH:mm")</td>
-                    <td>@evento.Campo.Nombre</td>
-                    <td>
-                        <a asp-page="Edit" asp-route-id="@evento.Id" class="btn btn-warning">Editar</a>
-                        <a asp-page="Delete" asp-route-id="@evento.Id" class="btn btn-danger">Eliminar</a>
-                    </td>
+    <div class="table-reponsive shadow-sm rounded bg-white p-3">
+        <table class="table table-hover aling-middle">
+            <thead class="table-light">
+                <tr class="text-uppercase text-muted">
+                    <th>@Html.DisplayNameFor(model => model.Eventos[0].NombreEvento)</th>
+                    <th>@Html.DisplayNameFor(model => model.Eventos[0].FechaEvento)</th>
+                    <th>@Html.DisplayNameFor(model => model.Eventos[0].HoraInicio)</th>
+                    <th>@Html.DisplayNameFor(model => model.Eventos[0].HoraFin)</th>
+                    <th>@Html.DisplayNameFor(model => model.Eventos[0].Descripcion)</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="6" class="text-center">No hay eventos disponibles.</td>
-            </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Eventos)
+                {
+                    <tr>
+                        <td>@Html.DisplayNameFor(modelItem => item.NombreEvento)</td>
+                        <td>@Html.DisplayNameFor(modelItem => item.FechaEvento)</td>
+                        <td>@Html.DisplayNameFor(modelItem => item.HoraInicio)</td>
+                        <td>@Html.DisplayNameFor(modelItem => item.HoraFin)</td>
+                        <td>@Html.DisplayNameFor(modelItem => item.Descripcion)</td>
+                        <td class="text-center">
+                            <a asp-page=".Edit" asp-route-id="@item.IdEvento" class="btn btn btn-outline-warning m-1">Edit
+                                <i class="fas fa-edit"></i>
+                            </a>
 
-        }
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .btn-gradient-red {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+    .btn-gradient-red:hover {
+        filter: brightness(1.1);
+        transform: scale(1.02);
+    }
+
+    .text-gradient-red {
+        background: Linear-gradient(to right, #ff4b2b, #ff416c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #fff5f5;
+    }
+</style>
