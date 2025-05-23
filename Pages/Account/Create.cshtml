@@ -1,0 +1,88 @@
+﻿@page
+@model SportFieldBooking.Pages.Account.CreateModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="fw-bold text-gradient">📝 Registro de Usuario</h1>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="User.Role" class="control-label"></label>
+                <select asp-for="User.Role" class="form-control" asp-items="Model.RoleOptions">
+                    <option value="">-- Selecciona un rol --</option>
+                </select>
+                <span asp-validation-for="User.Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="User.Email" class="control-label"></label>
+                <input asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="User.Password" class="control-label"></label>
+                <input asp-for="User.Password" type="password" class="form-control" />
+                <span asp-validation-for="User.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4 d-flex align-items-center">
+                <button type="submit" class="btn btn-gradient me-2">Registrar</button>
+                <a asp-page="/Account/Login" class="btn btn-outline-secondary">Volver al Login</a>
+            </div>
+
+            <p class="mt-4 text-center" style="font-size: 14px;">
+                ¿Ya tienes cuenta?
+                <a href="/Account/Login" style="color: #0069d9; text-decoration: none; font-weight: 600;">Inicia sesión aquí</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #0069d9, #00b09b);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+        transition: 0.3s ease;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: white;
+        }
+
+    .text-gradient {
+        background: linear-gradient(to right, #007bff, #00b09b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .form-control:focus {
+        border-color: #00b09b;
+        box-shadow: 0 0 8px #00b09b88;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
