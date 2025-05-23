@@ -14,11 +14,12 @@ namespace SportFieldBooking
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
-            {
-                options.Cookie.Name = "MyCookieAuth";
-                options.LoginPath = "/Account/Login";
-            });
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.Cookie.Name = "MyCookieAuth";
+                    options.LoginPath = "/Account/Login";
+                });
 
             builder.Services.AddDbContext<SportContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SportFieldBookingDB"))
