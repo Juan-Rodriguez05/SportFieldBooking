@@ -1,2 +1,8 @@
-﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <form method="post" class="form-inline" asp-page="/Logout" asp-page-handler="Logout">
+    </form>
+}
