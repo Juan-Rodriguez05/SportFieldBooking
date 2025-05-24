@@ -4,29 +4,42 @@
     ViewData["Title"] = "Crear Reserva";
 }
 
-<h1>Crear Reserva</h1>
+<div class="container mt-4">
+    <h2 class="mb-4 text-gradient-red fw-bold">Crear Nueva Reserva</h2>
 
-<form method="post">
-    <div>
-        <label>Campo</label>
-        <select asp-for="Reserva.IdCampo" asp-items="ViewBag.IdCampo"></select>
-    </div>
-    <div>
-        <label>Cliente</label>
-        <select asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente"></select>
-    </div>
-    <div>
-        <label>Inicio</label>
-        <input asp-for="Reserva.FechaHoraInicio" type="datetime-local" />
-    </div>
-    <div>
-        <label>Fin</label>
-        <input asp-for="Reserva.FechaHoraFin" type="datetime-local" />
-    </div>
-    <div>
-        <label>Estado</label>
-        <input asp-for="Reserva.Estado" />
-    </div>
-    <button type="submit">Guardar</button>
-    <a asp-page="Index">Cancelar</a>
-</form>
+    <form method="post" class="bg-white shadow-sm rounded p-4">
+        <div class="mb-3">
+            <label asp-for="Reserva.IdCampo" class="form-label">Campo</label>
+            <select asp-for="Reserva.IdCampo" class="form-select" asp-items="Model.Campos">
+                <option value="">Seleccione un campo</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.IdCliente" class="form-label">Cliente</label>
+            <select asp-for="Reserva.IdCliente" class="form-select" asp-items="Model.Clientes">
+                <option value="">Seleccione un cliente</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.FechaHoraInicio" class="form-label">Inicio</label>
+            <input asp-for="Reserva.FechaHoraInicio" class="form-control" type="datetime-local" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.FechaHoraFin" class="form-label">Fin</label>
+            <input asp-for="Reserva.FechaHoraFin" class="form-control" type="datetime-local" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.Estado" class="form-label">Estado</label>
+            <input asp-for="Reserva.Estado" class="form-control" />
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-gradient-red">Guardar</button>
+        </div>
+    </form>
+</div>
