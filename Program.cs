@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SportFieldBooking.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SportFieldBooking
 {
@@ -11,6 +13,13 @@ namespace SportFieldBooking
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.Cookie.Name = "MyCookieAuth";
+                    options.LoginPath = "/Account/Login";
+                });
 
             builder.Services.AddDbContext<SportContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SportFieldBookingDB"))
@@ -31,7 +40,9 @@ namespace SportFieldBooking
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.MapRazorPages();
 

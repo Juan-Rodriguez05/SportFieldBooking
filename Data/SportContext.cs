@@ -13,6 +13,8 @@ namespace SportFieldBooking.Data
         public DbSet<Evento> Eventos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,7 +22,6 @@ namespace SportFieldBooking.Data
 
             modelBuilder.Entity<Campo>()
                 .HasKey(c => c.IdCampo);
-
             modelBuilder.Entity<Cliente>()
                 .HasKey(c => c.IdCliente);
             modelBuilder.Entity<Evento>()
@@ -29,6 +30,8 @@ namespace SportFieldBooking.Data
                 .HasKey(p => p.IdPago);
             modelBuilder.Entity<Reserva>()
                 .HasKey(r => r.IdReserva);
+            modelBuilder.Entity<User>()
+                .HasKey(u => u.Id);
 
 
             // Configurar relación uno a uno entre Reserva y Pago

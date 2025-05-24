@@ -1,0 +1,79 @@
+﻿@page
+@model SportFieldBooking.Pages.Campos.IndexModel
+@{
+    ViewData["Title"] = "Campos";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-gradient">🏟️ Lista de Campos</h2>
+        <a asp-page="Create" class="btn btn-gradient">
+            <i class="fas fa-plus me-2"></i> Crear Campo
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded bg-white p-3">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr class="text-uppercase text-muted">
+                    <th>@Html.DisplayNameFor(model => model.Campos[0].Nombre)</th>
+                    <th>@Html.DisplayNameFor(model => model.Campos[0].Tipo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Campos[0].Ubicacion)</th>
+                    <th>@Html.DisplayNameFor(model => model.Campos[0].TarifaHora)</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Campos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ubicacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TarifaHora)
+                        </td>
+                        <td class="text-center">
+                            <a asp-page="./Edit" asp-route-id="@item.IdCampo" class="btn btn-sm btn-outline-warning me-1">Edit
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-page="./Delete" asp-route-id="@item.IdCampo" class="btn btn-sm btn-outline-danger">Delete
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #00b09b, #96c93d);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        filter: brightness(1.1);
+        transform: scale(1.02);
+    }
+
+    .text-gradient {
+        background: linear-gradient(to right, #11998e, #38ef7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f0fff4;
+    }
+</style>
