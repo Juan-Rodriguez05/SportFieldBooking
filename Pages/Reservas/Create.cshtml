@@ -4,9 +4,6 @@
     ViewData["Title"] = "Crear Reserva";
 }
 
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 <h1>Crear Reserva</h1>
 
 <form method="post">
@@ -16,7 +13,7 @@
     </div>
     <div>
         <label>Cliente</label>
-        <select id="clienteSelect" asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente"></select>
+        <select asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente"></select>
     </div>
     <div>
         <label>Inicio</label>
@@ -33,14 +30,3 @@
     <button type="submit">Guardar</button>
     <a asp-page="Index">Cancelar</a>
 </form>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#clienteSelect').select2({
-            placeholder: "Selecciona un cliente",
-            allowClear: true
-        });
-    });
-</script>

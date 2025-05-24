@@ -1,0 +1,23 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Reserva";
+}
+
+<h1>Eliminar Reserva</h1>
+
+<h3>¿Estás seguro de que deseas eliminar esta reserva?</h3>
+
+<div>
+    <strong>Campo:</strong> @Model.Reserva.Campo?.Nombre <br />
+    <strong>Cliente:</strong> @Model.Reserva.Cliente?.Nombre <br />
+    <strong>Inicio:</strong> @Model.Reserva.FechaHoraInicio <br />
+    <strong>Fin:</strong> @Model.Reserva.FechaHoraFin <br />
+    <strong>Estado:</strong> @Model.Reserva.Estado
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Reserva.IdReserva" />
+    <button type="submit">Eliminar</button>
+    <a asp-page="Index">Cancelar</a>
+</form>

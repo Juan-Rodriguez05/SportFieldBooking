@@ -1,0 +1,40 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.IndexModel
+@{
+    ViewData["Title"] = "Reservas";
+}
+
+<h1>Reservas</h1>
+
+<p>
+    <a asp-page="Create">Crear nueva reserva</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Campo</th>
+            <th>Cliente</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Reservas)
+        {
+            <tr>
+                <td>@item.Campo?.Nombre</td>
+                <td>@item.Cliente?.Nombre</td>
+                <td>@item.FechaHoraInicio</td>
+                <td>@item.FechaHoraFin</td>
+                <td>@item.Estado</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.IdReserva">Editar</a> |
+                    <a asp-page="Delete" asp-route-id="@item.IdReserva">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

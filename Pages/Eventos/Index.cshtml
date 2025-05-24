@@ -5,14 +5,14 @@
 }
 
 <div class="container mt-5">
-    <div class="d-flex justify-content-between aling-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-gratdient-red"> Lista de Eventos</h2>
-        <a asp-asp-page="Create" class="btn-gradient-red">
+        <a asp-page="./Create" class="btn-gradient-red">
             <i class="fas fa-plus me-2"></i> Crear Evento
         </a>
     </div>
 
-    <div class="table-reponsive shadow-sm rounded bg-white p-3">
+    <div class="table-responsive shadow-sm rounded bg-white p-3">
         <table class="table table-hover aling-middle">
             <thead class="table-light">
                 <tr class="text-uppercase text-muted">
@@ -28,11 +28,11 @@
                 @foreach (var item in Model.Eventos)
                 {
                     <tr>
-                        <td>@Html.DisplayNameFor(modelItem => item.NombreEvento)</td>
-                        <td>@Html.DisplayNameFor(modelItem => item.FechaEvento)</td>
-                        <td>@Html.DisplayNameFor(modelItem => item.HoraInicio)</td>
-                        <td>@Html.DisplayNameFor(modelItem => item.HoraFin)</td>
-                        <td>@Html.DisplayNameFor(modelItem => item.Descripcion)</td>
+                        <td>@item.NombreEvento</td>
+                        <td>@item.FechaEvento.ToShortDateString()</td>
+                        <td>@item.HoraInicio</td>
+                        <td>@item.HoraFin</td>
+                        <td>@item.Descripcion</td>
                         <td class="text-center">
                             <a asp-page=".Edit" asp-route-id="@item.IdEvento" class="btn btn btn-outline-warning m-1">Edit
                                 <i class="fas fa-edit"></i>

@@ -1,0 +1,33 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.EditModel
+@{
+    ViewData["Title"] = "Editar Reserva";
+}
+
+<h1>Editar Reserva</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Reserva.IdReserva" />
+    <div>
+        <label>Campo</label>
+        <select asp-for="Reserva.IdCampo" asp-items="ViewBag.IdCampo"></select>
+    </div>
+    <div>
+        <label>Cliente</label>
+        <select asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente"></select>
+    </div>
+    <div>
+        <label>Inicio</label>
+        <input asp-for="Reserva.FechaHoraInicio" type="datetime-local" />
+    </div>
+    <div>
+        <label>Fin</label>
+        <input asp-for="Reserva.FechaHoraFin" type="datetime-local" />
+    </div>
+    <div>
+        <label>Estado</label>
+        <input asp-for="Reserva.Estado" />
+    </div>
+    <button type="submit">Guardar</button>
+    <a asp-page="Index">Cancelar</a>
+</form>

@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportFieldBooking.Data;
 using SportFieldBooking.Models;
 
-namespace SportFieldBooking.Pages.Eventos
+namespace SportFieldBooking.Pages.Reservas
 {
     public class CreateModel : PageModel
     {
@@ -14,25 +15,23 @@ namespace SportFieldBooking.Pages.Eventos
             _context = context;
         }
 
+        [BindProperty]
+        public Reserva Reserva { get; set; } = default!;
+
         public IActionResult OnGet()
         {
+            ViewData["IdCampo"] = new SelectList(_context.Campos, "IdCampo", "Nombre");
+            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Nombre");
             return Page();
         }
 
-        [BindProperty]
-        public Evento Evento { get; set; } = new Evento();
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_context.Eventos == null || Evento == null)
-            {
-                ModelState.AddModelError(string.Empty, "No se pudo guardar el evento.");
+            if (!ModelState.IsValid)
                 return Page();
-            }
 
-            _context.Eventos.Add(Evento);
+            _context.Reservas.Add(Reserva);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
         }
     }
