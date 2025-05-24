@@ -1,45 +1,75 @@
 ﻿@page
 @model SportFieldBooking.Pages.Clientes.CreateModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Cliente";
 }
 
-<h1>Create</h1>
+<div class="container mt-5">
+    <h2 class="fw-bold text-gradient-red mb-4">🧍 Crear Nuevo Cliente</h2>
 
-<h4>Cliente</h4>
-<hr />
-<div class="row">
-</div class="cold-md-4">
-    <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Cliente.Nombre" class="control-label"></label>
+    <form method="post" class="shadow-sm rounded bg-white p-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Cliente.Nombre" class="form-label fw-semibold"></label>
             <input asp-for="Cliente.Nombre" class="form-control" />
             <span asp-validation-for="Cliente.Nombre" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Cliente.Apellido" class="control-label"></label>
+
+        <div class="mb-3">
+            <label asp-for="Cliente.Apellido" class="form-label fw-semibold"></label>
             <input asp-for="Cliente.Apellido" class="form-control" />
             <span asp-validation-for="Cliente.Apellido" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Cliente.Email" class="control-label"></label>
+
+        <div class="mb-3">
+            <label asp-for="Cliente.Email" class="form-label fw-semibold"></label>
             <input asp-for="Cliente.Email" class="form-control" />
             <span asp-validation-for="Cliente.Email" class="text-danger"></span>
         </div>
-         <div class="form-group">
-            <label asp-for="Cliente.Telefono" class="control-label"></label>
+
+        <div class="mb-3">
+            <label asp-for="Cliente.Telefono" class="form-label fw-semibold"></label>
             <input asp-for="Cliente.Telefono" class="form-control" />
             <span asp-validation-for="Cliente.Telefono" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-success" />
-            <a asp-page="Index" class="btn btn-primary">Back to List</a>
+
+        <div class="d-flex justify-content-between">
+            <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-gradient-red">
+                <i class="fas fa-check me-2"></i> Guardar
+            </button>
         </div>
     </form>
-   
-     @section Scripts {
+</div>
+
+@section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    .btn-gradient-red {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient-red:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient-red {
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .form-label {
+        font-weight: 600;
+
+    }
+</style>
