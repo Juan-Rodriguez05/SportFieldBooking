@@ -4,20 +4,42 @@
     ViewData["Title"] = "Eliminar Reserva";
 }
 
-<h1>Eliminar Reserva</h1>
+<style>
+    .btn-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
 
-<h3>¿Estás seguro de que deseas eliminar esta reserva?</h3>
+        .btn-gradient-orange:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
 
-<div>
-    <strong>Campo:</strong> @Model.Reserva.Campo?.Nombre <br />
-    <strong>Cliente:</strong> @Model.Reserva.Cliente?.Nombre <br />
-    <strong>Inicio:</strong> @Model.Reserva.FechaHoraInicio <br />
-    <strong>Fin:</strong> @Model.Reserva.FechaHoraFin <br />
-    <strong>Estado:</strong> @Model.Reserva.Estado
+    .text-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-gradient-orange fw-bold mb-4">Eliminar Reserva</h2>
+
+    <h5>¿Estás seguro de que deseas eliminar esta reserva?</h5>
+
+    <div class="bg-light p-4 rounded shadow-sm mb-4">
+        <p><strong>Campo:</strong> @Model.Reserva.Campo?.Nombre</p>
+        <p><strong>Cliente:</strong> @Model.Reserva.Cliente?.Nombre</p>
+        <p><strong>Inicio:</strong> @Model.Reserva.FechaHoraInicio</p>
+        <p><strong>Fin:</strong> @Model.Reserva.FechaHoraFin</p>
+        <p><strong>Estado:</strong> @Model.Reserva.Estado</p>
+    </div>
+
+    <form method="post" class="d-flex justify-content-between">
+        <input type="hidden" asp-for="Reserva.IdReserva" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-page="Index" class="btn btn-gradient-orange">Cancelar</a>
+    </form>
 </div>
-
-<form method="post">
-    <input type="hidden" asp-for="Reserva.IdReserva" />
-    <button type="submit">Eliminar</button>
-    <a asp-page="Index">Cancelar</a>
-</form>
