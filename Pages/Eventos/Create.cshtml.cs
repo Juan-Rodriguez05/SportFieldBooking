@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SportFieldBooking.Data;
 using SportFieldBooking.Models;
 
@@ -14,19 +16,28 @@ namespace SportFieldBooking.Pages.Eventos
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public Evento Evento { get; set; } = null!;
+
+        public SelectList Campos { get; set; } = null!;
+
+        public async Task<IActionResult> OnGetAsync()
         {
+            var campos = await _context.Campos
+                .OrderBy(c => c.Nombre)
+                .ToListAsync();
+
+            Campos = new SelectList(campos, "IdCampo", "Nombre");
+
             return Page();
         }
 
-        [BindProperty]
-        public Evento Evento { get; set; } = new Evento();
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_context.Eventos == null || Evento == null)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "No se pudo guardar el evento.");
+                var campos = await _context.Campos.ToListAsync();
+                Campos = new SelectList(campos, "IdCampo", "Nombre");
                 return Page();
             }
 

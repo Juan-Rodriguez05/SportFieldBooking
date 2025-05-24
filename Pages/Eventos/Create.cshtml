@@ -1,46 +1,52 @@
 ﻿@page
-@model SportFieldBooking.Pages.Reservas.CreateModel
+@model SportFieldBooking.Pages.Eventos.CreateModel
 @{
-    ViewData["Title"] = "Crear Reserva";
+    ViewData["Title"] = "Crear Evento";
 }
 
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<h1>Crear Reserva</h1>
+<h1>Crear Evento</h1>
 
 <form method="post">
-    <div>
-        <label>Campo</label>
-        <select asp-for="Reserva.IdCampo" asp-items="ViewBag.IdCampo"></select>
+    <div class="mb-3">
+        <label asp-for="Evento.NombreEvento" class="form-label"></label>
+        <input asp-for="Evento.NombreEvento" class="form-control" />
+        <span asp-validation-for="Evento.NombreEvento" class="text-danger"></span>
     </div>
-    <div>
-        <label>Cliente</label>
-        <select id="clienteSelect" asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente"></select>
+
+    <div class="mb-3">
+        <label asp-for="Evento.FechaEvento" class="form-label"></label>
+        <input asp-for="Evento.FechaEvento" type="date" class="form-control" />
+        <span asp-validation-for="Evento.FechaEvento" class="text-danger"></span>
     </div>
-    <div>
-        <label>Inicio</label>
-        <input asp-for="Reserva.FechaHoraInicio" type="datetime-local" />
+
+    <div class="mb-3">
+        <label asp-for="Evento.HoraInicio" class="form-label"></label>
+        <input asp-for="Evento.HoraInicio" type="time" class="form-control" />
+        <span asp-validation-for="Evento.HoraInicio" class="text-danger"></span>
     </div>
-    <div>
-        <label>Fin</label>
-        <input asp-for="Reserva.FechaHoraFin" type="datetime-local" />
+
+    <div class="mb-3">
+        <label asp-for="Evento.HoraFin" class="form-label"></label>
+        <input asp-for="Evento.HoraFin" type="time" class="form-control" />
+        <span asp-validation-for="Evento.HoraFin" class="text-danger"></span>
     </div>
-    <div>
-        <label>Estado</label>
-        <input asp-for="Reserva.Estado" />
+
+    <div class="mb-3">
+        <label asp-for="Evento.Descripcion" class="form-label"></label>
+        <textarea asp-for="Evento.Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Evento.Descripcion" class="text-danger"></span>
     </div>
-    <button type="submit">Guardar</button>
-    <a asp-page="Index">Cancelar</a>
+
+    <div class="mb-3">
+        <label asp-for="Evento.IdCampo" class="form-label">Campo</label>
+        <select asp-for="Evento.IdCampo" asp-items="Model.Campos" class="form-select"></select>
+        <span asp-validation-for="Evento.IdCampo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#clienteSelect').select2({
-            placeholder: "Selecciona un cliente",
-            allowClear: true
-        });
-    });
-</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
