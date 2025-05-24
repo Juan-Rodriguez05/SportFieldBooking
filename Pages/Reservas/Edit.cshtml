@@ -1,0 +1,63 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.EditModel
+@{
+    ViewData["Title"] = "Editar Reserva";
+}
+
+<style>
+    .btn-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient-orange:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-gradient-orange fw-bold mb-4">Editar Reserva</h2>
+
+    <form method="post" class="bg-white shadow-sm rounded p-4">
+        <input type="hidden" asp-for="Reserva.IdReserva" />
+
+        <div class="mb-3">
+            <label class="form-label">Campo</label>
+            <select asp-for="Reserva.IdCampo" asp-items="ViewBag.IdCampo" class="form-select"></select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cliente</label>
+            <select asp-for="Reserva.IdCliente" asp-items="ViewBag.IdCliente" class="form-select"></select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Inicio</label>
+            <input asp-for="Reserva.FechaHoraInicio" type="datetime-local" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Fin</label>
+            <input asp-for="Reserva.FechaHoraFin" type="datetime-local" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <input asp-for="Reserva.Estado" class="form-control" />
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-gradient-orange">Guardar</button>
+        </div>
+    </form>
+</div>

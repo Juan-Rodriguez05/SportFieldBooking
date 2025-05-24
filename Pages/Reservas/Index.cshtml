@@ -1,0 +1,64 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.IndexModel
+@{
+    ViewData["Title"] = "Reservas";
+}
+
+<style>
+    .btn-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient-orange:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="text-gradient-orange fw-bold mb-4">Reservas</h2>
+
+    <div class="mb-3">
+        <a asp-page="Create" class="btn btn-gradient-orange">Crear nueva reserva</a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded bg-white p-3">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Campo</th>
+                    <th>Cliente</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Reservas)
+                {
+                    <tr>
+                        <td>@item.Campo?.Nombre</td>
+                        <td>@(item.Cliente != null ? item.Cliente.Nombre + " " + item.Cliente.Apellido : "")</td>
+                        <td>@item.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.FechaHoraFin.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.Estado</td>
+                        <td>
+                            <a asp-page="Edit" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                            <a asp-page="Delete" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
