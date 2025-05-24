@@ -25,7 +25,12 @@ namespace SportFieldBooking.Pages.Reservas
         public async Task<IActionResult> OnGetAsync()
         {
             Campos = new SelectList(await _context.Campos.ToListAsync(), "IdCampo", "Nombre");
-            Clientes = new SelectList(await _context.Clientes.ToListAsync(), "IdCliente", "NombreCompleto");
+            Clientes = new SelectList(
+            await _context.Clientes
+           .Select(c => new { c.IdCliente, NombreCompleto = c.Nombre + " " + c.Apellido })
+           .ToListAsync(),
+           "IdCliente",
+           "NombreCompleto");
 
             return Page();
         }
