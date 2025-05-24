@@ -4,7 +4,7 @@
     ViewData["Title"] = "Crear Evento";
 }
 
-<h1>Crear Evento</h1>
+<h1 class="text-gradient mb-4">Crear Evento</h1>
 
 <form method="post">
     <div class="mb-3">
@@ -43,9 +43,31 @@
         <span asp-validation-for="Evento.IdCampo" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+    <div class="d-flex justify-content-between">
+        <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-gradient">Guardar</button>
+    </div>
 </form>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        filter: brightness(1.1);
+        transform: scale(1.02);
+    }
+
+    .text-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
