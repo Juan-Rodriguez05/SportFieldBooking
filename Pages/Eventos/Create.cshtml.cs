@@ -8,7 +8,7 @@ using SportFieldBooking.Models;
 
 namespace SportFieldBooking.Pages.Eventos
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class CreateModel : PageModel
     {
         private readonly SportContext _context; 
