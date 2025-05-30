@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportFieldBooking.Data;
 
@@ -11,9 +12,11 @@ using SportFieldBooking.Data;
 namespace SportFieldBooking.Migrations
 {
     [DbContext(typeof(SportContext))]
-    partial class SportContextModelSnapshot : ModelSnapshot
+    [Migration("20250530014315_fdsf")]
+    partial class fdsf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +90,7 @@ namespace SportFieldBooking.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEvento"));
 
-                    b.Property<int?>("CampoIdCampo")
+                    b.Property<int>("CampoIdCampo")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -114,8 +117,6 @@ namespace SportFieldBooking.Migrations
                     b.HasKey("IdEvento");
 
                     b.HasIndex("CampoIdCampo");
-
-                    b.HasIndex("IdCampo");
 
                     b.ToTable("Eventos");
                 });
@@ -215,14 +216,10 @@ namespace SportFieldBooking.Migrations
 
             modelBuilder.Entity("SportFieldBooking.Models.Evento", b =>
                 {
-                    b.HasOne("SportFieldBooking.Models.Campo", null)
-                        .WithMany("Eventos")
-                        .HasForeignKey("CampoIdCampo");
-
                     b.HasOne("SportFieldBooking.Models.Campo", "Campo")
-                        .WithMany()
-                        .HasForeignKey("IdCampo")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany("Eventos")
+                        .HasForeignKey("CampoIdCampo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Campo");

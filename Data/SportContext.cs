@@ -33,6 +33,12 @@ namespace SportFieldBooking.Data
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);
 
+            modelBuilder.Entity<Evento>()
+                .HasOne(e => e.Campo)
+                .WithMany()
+                .HasForeignKey(e => e.IdCampo)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             // Configurar relación uno a uno entre Reserva y Pago
             modelBuilder.Entity<Reserva>()

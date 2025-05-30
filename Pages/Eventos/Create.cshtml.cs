@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,9 +8,10 @@ using SportFieldBooking.Models;
 
 namespace SportFieldBooking.Pages.Eventos
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
-        private readonly SportContext _context;
+        private readonly SportContext _context; 
 
         public CreateModel(SportContext context)
         {
@@ -17,9 +19,9 @@ namespace SportFieldBooking.Pages.Eventos
         }
 
         [BindProperty]
-        public Evento Evento { get; set; } = null!;
+        public Evento Evento { get; set; } = default!;
 
-        public SelectList Campos { get; set; } = null!;
+        public SelectList Campos { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -28,7 +30,6 @@ namespace SportFieldBooking.Pages.Eventos
                 .ToListAsync();
 
             Campos = new SelectList(campos, "IdCampo", "Nombre");
-
             return Page();
         }
 
@@ -36,7 +37,17 @@ namespace SportFieldBooking.Pages.Eventos
         {
             if (!ModelState.IsValid)
             {
-                var campos = await _context.Campos.ToListAsync();
+                foreach (var key in ModelState.Keys)
+                {
+                    var state = ModelState[key];
+                    foreach (var error in state.Errors)
+                    {
+                        Console.WriteLine($"Error en {key}: {error.ErrorMessage}");
+                    }
+                }
+                var campos = await _context.Campos
+                    .OrderBy(c => c.Nombre)
+                    .ToListAsync();
                 Campos = new SelectList(campos, "IdCampo", "Nombre");
                 return Page();
             }
