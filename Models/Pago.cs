@@ -12,6 +12,7 @@ namespace SportFieldBooking.Models
         public Reserva? Reserva { get; set; } = null!;
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Monto { get; set; }
 
         public DateTime FechaPago { get; set; }
