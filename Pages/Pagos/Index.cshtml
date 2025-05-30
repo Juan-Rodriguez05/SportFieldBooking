@@ -21,7 +21,6 @@
                     <th>@Html.DisplayNameFor(model => model.Pagos[0].Monto)</th>
                     <th>@Html.DisplayNameFor(model => model.Pagos[0].FechaPago)</th>
                     <th>@Html.DisplayNameFor(model => model.Pagos[0].MetodoPago)</th>
-                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +31,11 @@
                             @Html.DisplayFor(modelItem => item.IdPago)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Reserva.IdReserva)
+                            @(item.Reserva?.Cliente != null
+                                                    ? $"{item.Reserva.Cliente.Nombre} {item.Reserva.Cliente.Apellido}"
+                                                    : "Sin cliente")
                         </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Monto)
                         </td>
@@ -42,14 +44,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.MetodoPago)
-                        </td>
-                        <td class="text-center">
-                            <a asp-page="./Edit" asp-route-id="@item.IdPago" class="btn btn-sm btn-outline-warning me-1">
-                                Edit <i class="fas fa-edit"></i>
-                            </a>
-                            <a asp-page="./Delete" asp-route-id="@item.IdPago" class="btn btn-sm btn-outline-danger">
-                                Delete <i class="fas fa-trash"></i>
-                            </a>
                         </td>
                     </tr>
                 }

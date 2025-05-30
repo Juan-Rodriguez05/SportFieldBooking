@@ -1,73 +1,73 @@
 ﻿@page
 @model SportFieldBooking.Pages.Pagos.CreateModel
 @{
-	ViewData["Title"] = "Registrar Pago";
+    ViewData["Title"] = "Registrar Pago";
 }
 
 <div class="container mt-5">
-	<h2 class="text-center" text-gradient mb-4>Registrar Pago</h2>
-	<hr />
+    <h2 class="text-center text-gradient mb-4">Registrar Pago</h2>
+    <hr />
 
-	<div class="row">
-		<div class="col-md-6">
-			<form method="post">
-				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-				<div class="form-group m-3">
-					<label asp-for="Pago.IdReserva" class="control-label">Reserva</label>
-					<select asp-for="Pago.IdReserva" class="form-control" 
-					asp-items="ViewBag.Reservas"></select>
-					<span asp-validation-for="Pago.IdReserva" class="text-danger"></span>
-				</div>
-				<div class="form-group m-3">
-					<label asp-for="Pago.Monto" class="control-label"></label>
-					<input asp-for="Pago.Monto" class="form-control" />
-					<span asp-validation-for="Pago.Monto" class="text-danger"></span>
-				</div>
-				<div class="form-group m-3">
-					<label asp-for="Pago.MetodoPago" class="control-label">Metodo de pago</label>
+                <div class="form-group m-3">
+                    <label asp-for="Pago.IdReserva" class="control-label">Reserva</label>
+                    <select asp-for="Pago.IdReserva" class="form-control" asp-items="@(ViewData["IdReserva"] as SelectList)"></select>
+                    <span asp-validation-for="Pago.IdReserva" class="text-danger"></span>
+                </div>
 
-					<select asp-for="Pago.MetodoPago" class="form-control">
-						<option value="Tarjeta">Tarjeta</option>
-						<option value="Efectivo">Efectivo</option>
-						<option value="Transferencia">Transferencia</option>
-					</select>
-					<span asp-validation-for="Pago.MetodoPago" class="text-danger"></span>
-				</div>
-				<div class="form-group mt-4">
-					<button type="submit" class="btn btn-gradient">
-						<i class="fas fa-money-bill-wave">Registrar pago</i>
-					</button>
-					<a asp-page="./Index" class="btn btn-outline-secondary ms-2">Cancelar</a>
-				</div>
-				</form>
-		</div>
-	</div>
+                <div class="form-group m-3">
+                    <label asp-for="Pago.Monto" class="control-label"></label>
+                    <input asp-for="Pago.Monto" class="form-control" />
+                    <span asp-validation-for="Pago.Monto" class="text-danger"></span>
+                </div>
+
+                <div class="form-group m-3">
+                    <label asp-for="Pago.MetodoPago" class="control-label">Método de pago</label>
+                    <select asp-for="Pago.MetodoPago" class="form-control">
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                    </select>
+                    <span asp-validation-for="Pago.MetodoPago" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-gradient">
+                        <i class="fas fa-money-bill-wave"></i> Registrar pago
+                    </button>
+                    <a asp-page="./Index" class="btn btn-outline-secondary ms-2">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
 
 <style>
-	.btn-gradient {
-		background: linear-gradient(to right, #8e2de2, #4a00e0); 
-		color: white;
-		border: none;
-		transition: 0.3s ease;
-	}
+    .btn-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
 
-		.btn-gradient:hover {
-			filter: brightness(1.1);
-			transform: scale(1.02);
-		}
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
 
-	.text-gradient {
-		background: linear-gradient(to right, #8e2de2, #4a00e0);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
+    .text-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 </style>
-

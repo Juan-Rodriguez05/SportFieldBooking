@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SportFieldBooking.Data;
 using SportFieldBooking.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SportFieldBooking.Pages.Pagos
 {
@@ -25,6 +26,7 @@ namespace SportFieldBooking.Pages.Pagos
             {
                 Pagos = await _context.Pagos
                     .Include(p => p.Reserva)
+                        .ThenInclude(r => r.Cliente) 
                     .ToListAsync();
             }
         }

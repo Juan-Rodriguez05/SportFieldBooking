@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using SportFieldBooking.Models;
 
 namespace SportFieldBooking.Pages.Reservas
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly SportContext _context;

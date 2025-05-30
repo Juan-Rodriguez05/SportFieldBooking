@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SportFieldBooking.Pages.Eventos
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
        private readonly SportContext _context;

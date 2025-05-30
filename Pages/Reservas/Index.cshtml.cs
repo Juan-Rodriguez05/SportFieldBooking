@@ -1,12 +1,14 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SportFieldBooking.Models;
 using SportFieldBooking.Data;
+using SportFieldBooking.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SportFieldBooking.Pages.Reservas
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly SportContext _context;
