@@ -4,6 +4,50 @@
     ViewData["Title"] = "Reservas";
 }
 
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-gradient-orange">Lista de Reservas</h2>
+        <a asp-page="Create" class="btn btn-gradient-orange">
+            <i class="fas fa-plus me-2"></i> Crear Reserva
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded bg-white p-3">
+        <table class="table table-hover align-middle">
+            <thead class="table-light text-uppercase text-muted">
+                <tr>
+                    <th>Campo</th>
+                    <th>Cliente</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Reservas)
+                {
+                    <tr>
+                        <td>@item.Campo?.Nombre</td>
+                        <td>@(item.Cliente != null ? item.Cliente.Nombre + " " + item.Cliente.Apellido : "")</td>
+                        <td>@item.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.FechaHoraFin.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.Estado</td>
+                        <td class="text-center">
+                            <a asp-page="Edit" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-warning me-1">
+                                Editar <i class="fas fa-edit ms-1"></i>
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-danger">
+                                Eliminar <i class="fas fa-trash ms-1"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <style>
     .btn-gradient-orange {
         background: linear-gradient(to right, #ff8008, #ffc837);
@@ -22,43 +66,8 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    .table-hover tbody tr:hover {
+        background-color: #fff8e1;
+    }
 </style>
-
-<div class="container mt-4">
-    <h2 class="text-gradient-orange fw-bold mb-4">Reservas</h2>
-
-    <div class="mb-3">
-        <a asp-page="Create" class="btn btn-gradient-orange">Crear nueva reserva</a>
-    </div>
-
-    <div class="table-responsive shadow-sm rounded bg-white p-3">
-        <table class="table table-hover align-middle">
-            <thead class="table-dark">
-                <tr>
-                    <th>Campo</th>
-                    <th>Cliente</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Reservas)
-                {
-                    <tr>
-                        <td>@item.Campo?.Nombre</td>
-                        <td>@(item.Cliente != null ? item.Cliente.Nombre + " " + item.Cliente.Apellido : "")</td>
-                        <td>@item.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@item.FechaHoraFin.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@item.Estado</td>
-                        <td>
-                            <a asp-page="Edit" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-primary me-1">Editar</a>
-                            <a asp-page="Delete" asp-route-id="@item.IdReserva" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>

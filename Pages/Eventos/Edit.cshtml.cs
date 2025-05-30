@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportFieldBooking.Data;
 using SportFieldBooking.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SportFieldBooking.Pages.Eventos
 {
@@ -16,8 +17,9 @@ namespace SportFieldBooking.Pages.Eventos
         }
 
         [BindProperty]
-
         public Evento Evento { get; set; } = default!;
+
+        public SelectList ListaCampos { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -25,13 +27,18 @@ namespace SportFieldBooking.Pages.Eventos
             {
                 return NotFound();
             }
+
             var evento = await _context.Eventos.FirstOrDefaultAsync(m => m.IdEvento == id);
 
             if (evento == null)
             {
                 return NotFound();
             }
+
             Evento = evento;
+
+            ListaCampos = new SelectList(await _context.Campos.ToListAsync(), "IdCampo", "Nombre");
+
             return Page();
         }
 
@@ -39,6 +46,15 @@ namespace SportFieldBooking.Pages.Eventos
         {
             if (!ModelState.IsValid)
             {
+                ListaCampos = new SelectList(await _context.Campos.ToListAsync(), "IdCampo", "Nombre");
+                return Page();
+            }
+
+            var campoExiste = await _context.Campos.AnyAsync(c => c.IdCampo == Evento.IdCampo);
+            if (!campoExiste)
+            {
+                ModelState.AddModelError("Evento.IdCampo", "El campo seleccionado no existe.");
+                ListaCampos = new SelectList(await _context.Campos.ToListAsync(), "IdCampo", "Nombre");
                 return Page();
             }
 
@@ -59,8 +75,10 @@ namespace SportFieldBooking.Pages.Eventos
                     throw;
                 }
             }
+
             return RedirectToPage("./Index");
         }
+
         private bool EventoExists(int id)
         {
             return (_context.Eventos?.Any(e => e.IdEvento == id)).GetValueOrDefault();

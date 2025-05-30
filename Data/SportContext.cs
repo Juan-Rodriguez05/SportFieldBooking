@@ -47,6 +47,18 @@ namespace SportFieldBooking.Data
                 .HasForeignKey<Pago>(p => p.IdReserva)
                 .OnDelete(DeleteBehavior.Cascade); // Funciona para cuando se elimine la reseva tambien el pago que se hara
 
+            modelBuilder.Entity<Reserva>()
+                .HasOne(r => r.Campo)
+                .WithMany()  // Campo puede tener muchas Reservas
+                .HasForeignKey(r => r.IdCampo)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Reserva>()
+                .HasOne(r => r.Cliente)
+                .WithMany()  // Cliente puede tener muchas Reservas
+                .HasForeignKey(r => r.IdCliente)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
 
     }

@@ -4,5 +4,7 @@
 @if (User.Identity?.IsAuthenticated ?? false)
 {
     <form method="post" class="form-inline" asp-page="/Logout" asp-page-handler="Logout">
+        <button type="submit" class="btn btn-link">Cerrar sesión</button>
     </form>
+
 }

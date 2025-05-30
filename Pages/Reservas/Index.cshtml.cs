@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SportFieldBooking.Models;
 using SportFieldBooking.Data;
-using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SportFieldBooking.Pages.Reservas
 {
@@ -15,7 +16,7 @@ namespace SportFieldBooking.Pages.Reservas
             _context = context;
         }
 
-        public IList<Reserva> Reservas { get; set; } = default!;
+        public IList<Reserva> Reservas { get; set; } = new List<Reserva>()!;
 
         public async Task OnGetAsync()
         {
