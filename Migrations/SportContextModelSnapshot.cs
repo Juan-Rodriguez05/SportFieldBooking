@@ -87,7 +87,7 @@ namespace SportFieldBooking.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEvento"));
 
-                    b.Property<int>("CampoIdCampo")
+                    b.Property<int?>("CampoIdCampo")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -108,11 +108,14 @@ namespace SportFieldBooking.Migrations
 
                     b.Property<string>("NombreEvento")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("IdEvento");
 
                     b.HasIndex("CampoIdCampo");
+
+                    b.HasIndex("IdCampo");
 
                     b.ToTable("Eventos");
                 });
@@ -185,12 +188,41 @@ namespace SportFieldBooking.Migrations
                     b.ToTable("Reservas");
                 });
 
+            modelBuilder.Entity("SportFieldBooking.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("SportFieldBooking.Models.Evento", b =>
                 {
-                    b.HasOne("SportFieldBooking.Models.Campo", "Campo")
+                    b.HasOne("SportFieldBooking.Models.Campo", null)
                         .WithMany("Eventos")
-                        .HasForeignKey("CampoIdCampo")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("CampoIdCampo");
+
+                    b.HasOne("SportFieldBooking.Models.Campo", "Campo")
+                        .WithMany()
+                        .HasForeignKey("IdCampo")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Campo");

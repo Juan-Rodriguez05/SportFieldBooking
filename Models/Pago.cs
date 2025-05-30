@@ -1,13 +1,17 @@
-﻿namespace SportFieldBooking.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SportFieldBooking.Models
 {
     public class Pago
     {
         public int IdPago { get; set; }
 
         // FK a Reserva
+        [Required]
         public int IdReserva { get; set; }
-        public Reserva Reserva { get; set; } = null!;
+        public Reserva? Reserva { get; set; } = null!;
 
+        [Required]
         public decimal Monto { get; set; }
 
         public DateTime FechaPago { get; set; }

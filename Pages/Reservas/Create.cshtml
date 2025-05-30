@@ -1,0 +1,65 @@
+﻿@page
+@model SportFieldBooking.Pages.Reservas.CreateModel
+@{
+    ViewData["Title"] = "Crear Reserva";
+}
+
+<style>
+    .btn-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient-orange:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient-orange {
+        background: linear-gradient(to right, #ff8008, #ffc837);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-gradient-orange fw-bold">Crear Nueva Reserva</h2>
+
+    <form method="post" class="bg-white shadow-sm rounded p-4">
+        <div class="mb-3">
+            <label asp-for="Reserva.IdCampo" class="form-label">Campo</label>
+            <select asp-for="Reserva.IdCampo" class="form-select" asp-items="Model.Campos">
+                <option value="">Seleccione un campo</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.IdCliente" class="form-label">Cliente</label>
+            <select asp-for="Reserva.IdCliente" class="form-select" asp-items="Model.Clientes">
+                <option value="">Seleccione un cliente</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.FechaHoraInicio" class="form-label">Inicio</label>
+            <input asp-for="Reserva.FechaHoraInicio" class="form-control" type="datetime-local" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.FechaHoraFin" class="form-label">Fin</label>
+            <input asp-for="Reserva.FechaHoraFin" class="form-control" type="datetime-local" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Reserva.Estado" class="form-label">Estado</label>
+            <input asp-for="Reserva.Estado" class="form-control" />
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-gradient-orange">Guardar</button>
+        </div>
+    </form>
+</div>

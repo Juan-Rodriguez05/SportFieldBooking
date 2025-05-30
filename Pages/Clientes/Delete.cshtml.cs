@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportFieldBooking.Data;
@@ -5,6 +6,7 @@ using SportFieldBooking.Models;
 
 namespace SportFieldBooking.Pages.Clientes
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly SportContext _context;

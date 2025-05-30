@@ -1,0 +1,56 @@
+﻿@page
+@model SportFieldBooking.Pages.Eventos.DeleteModel
+@{
+    ViewBag.Title = "Eliminar Evento";
+}
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0); /* morado */
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="fw-bold text-gradient mb-4">Eliminar Evento</h2>
+
+    <h5 class="mb-3">¿Está seguro de que desea eliminar este evento?</h5>
+
+    <div class="border rounded p-3 bg-light">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Evento.NombreEvento)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Evento.NombreEvento)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Evento.FechaEvento)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Evento.FechaEvento)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Evento.HoraInicio)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Evento.HoraInicio)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Evento.HoraFin)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Evento.HoraFin)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Evento.Descripcion)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Evento.Descripcion)</dd>
+        </dl>
+
+        <form method="post" class="mt-4 d-flex gap-2">
+            <input type="hidden" asp-for="Evento.IdEvento" />
+            <input type="submit" value="Eliminar" class="btn btn-gradient" />
+            <a asp-page="./Index" class="btn btn-outline-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

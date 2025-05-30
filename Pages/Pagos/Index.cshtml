@@ -1,0 +1,77 @@
+﻿@page
+@model SportFieldBooking.Pages.Pagos.IndexModel
+@{
+    ViewData["Title"] = "Pagos";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-gradient">Lista de Pagos</h2>
+        <a asp-page="Create" class="btn btn-gradient">
+            <i class="fas fa-plus me-2"></i>Registrar Pago
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded bg-white p-3">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr class="text-uppercase text-muted">
+                    <th>@Html.DisplayNameFor(model => model.Pagos[0].IdPago)</th>
+                    <th>@Html.DisplayNameFor(model => model.Pagos[0].Reserva.IdReserva)</th>
+                    <th>@Html.DisplayNameFor(model => model.Pagos[0].Monto)</th>
+                    <th>@Html.DisplayNameFor(model => model.Pagos[0].FechaPago)</th>
+                    <th>@Html.DisplayNameFor(model => model.Pagos[0].MetodoPago)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Pagos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdPago)
+                        </td>
+                        <td>
+                            @(item.Reserva?.Cliente != null
+                                                    ? $"{item.Reserva.Cliente.Nombre} {item.Reserva.Cliente.Apellido}"
+                                                    : "Sin cliente")
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Monto)
+                        </td>
+                        <td>
+                            @item.FechaPago.ToShortDateString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MetodoPago)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0); 
+        color: white;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+    .text-gradient {
+        background: linear-gradient(to right, #8e2de2, #4a00e0); 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f5f0ff; 
+    }
+</style>
